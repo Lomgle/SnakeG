@@ -1,23 +1,25 @@
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class snakeMovement : MonoBehaviour
+public class SnakeMovement : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Vector2 direction;
-    void controlDirection()
+    public void ControlDirection()
     {
-        ;
+        if (Keyboard.current.aKey.isPressed) direction = new Vector2(-0.5f, 0.0f);
+        if (Keyboard.current.wKey.isPressed) direction = new Vector2(0.0f, 0.5f);
+        if (Keyboard.current.dKey.isPressed) direction = new Vector2(0.5f, 0.0f);
+        if (Keyboard.current.sKey.isPressed) direction = new Vector2(0.0f, -0.5f);
     }
-    void Start()
+    void Update()
     {
-        
+        ControlDirection();
     }
 
     // Update is called once per frame
-    void Update()
+    public void FixedUpdate()
     {
-        
+        this.transform.position = new Vector3(this.transform.position.x + direction.x, this.transform.position.y + direction.y, 0.0f);
     }
 }
