@@ -893,6 +893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   segmentPrefab: {fileID: 3786314444622849158, guid: a824af82554ef4047815853e033380b9, type: 3}
+  previousPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1211378053
 GameObject:
   m_ObjectHideFlags: 0
