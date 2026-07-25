@@ -5,12 +5,18 @@ using UnityEngine.InputSystem;
 
 public class SnakeMovement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Vector2 direction;
-    private List<Transform> segmentList;
+    public List<Transform> segmentList;
     public Transform segmentPrefab;
-    private bool hasntEaten = true;
-    public Vector3 previousPosition;
+
+    public float moveRate = 10f;
+    private float moveTimer = 0;
+    public void Move()
+    {
+        for (int i = segmentList.Count - 1; i > 0; i--)
+            segmentList[i].position = segmentList[i - 1].position;
+        transform.position += (Vector3)direction;
+    }
     void Start()
     {
         segmentList = new List<Transform>();
@@ -24,20 +30,16 @@ public class SnakeMovement : MonoBehaviour
         if (Keyboard.current.wKey.isPressed) direction = Vector2.up;
     }
     void Update()
-    {
-        for (int i = segmentList.Count - 1; i > 0; i--)
-        {
-            segmentList[i].position = segmentList[i - 1].position;
-        }
+    {        
         ControlDirection();
+        moveTimer += Time.deltaTime;
+        if (moveTimer >= moveRate)
+        {
+            moveTimer = 0.0f;
+            Move();
+        }
     }
 
-    // Update is called once per frame
-    public void FixedUpdate()
-    {
-        if (hasntEaten) previousPosition = transform.position;
-        transform.position = new Vector3(transform.position.x + direction.x, transform.position.y + direction.y, 0.0f);
-    }
 
     private void Grow()
     {

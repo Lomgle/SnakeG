@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3786314444622849158}
   - component: {fileID: 7137454697652608489}
   - component: {fileID: 2838112312441395362}
-  - component: {fileID: 9085589911310371933}
   m_Layer: 0
   m_Name: snake_segment
   m_TagString: Player
@@ -138,15 +137,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.25, y: 0.25}
   m_EdgeRadius: 0
---- !u!114 &9085589911310371933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8963590470134802961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2994ad0574fe4b54d8cf31a9c8c40b97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
