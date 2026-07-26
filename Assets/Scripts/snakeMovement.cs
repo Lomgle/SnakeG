@@ -24,10 +24,10 @@ public class SnakeMovement : MonoBehaviour
     }
     public void ControlDirection()
     {
-        if (Keyboard.current.aKey.isPressed) direction = Vector2.left;
-        if (Keyboard.current.dKey.isPressed) direction = Vector2.right;
-        if (Keyboard.current.sKey.isPressed) direction = Vector2.down;
-        if (Keyboard.current.wKey.isPressed) direction = Vector2.up;
+        if (Keyboard.current.aKey.isPressed && direction != Vector2.right) direction = Vector2.left;
+        if (Keyboard.current.dKey.isPressed && direction != Vector2.left) direction = Vector2.right;
+        if (Keyboard.current.sKey.isPressed && direction != Vector2.up) direction = Vector2.down;
+        if (Keyboard.current.wKey.isPressed && direction != Vector2.down) direction = Vector2.up;
     }
     void Update()
     {        
