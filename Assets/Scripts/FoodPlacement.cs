@@ -3,12 +3,11 @@ using UnityEngine;
 public class FoodPlacement : MonoBehaviour
 {
     public BoxCollider2D foodGrid;
-
+    public LayerMask snakeLayer;
     private void RandomizePosition()
     {
         Bounds bounds = foodGrid.bounds;
         float x, y;
-        int iter = 0;
         Vector2 temp;
         do
         {
@@ -16,10 +15,7 @@ public class FoodPlacement : MonoBehaviour
             y = Mathf.Round(Random.Range(bounds.min.y, bounds.max.y));
             temp.x = x;
             temp.y = y;
-            iter++;
-        } while (Physics2D.OverlapPoint(temp));
-        Debug.Log("Takes " + iter);
-        iter = 0;
+        } while (Physics2D.OverlapPoint(temp, snakeLayer));
         gameObject.transform.position = new Vector3(
             x,
             y,

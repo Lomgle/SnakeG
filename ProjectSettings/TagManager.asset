@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Food
+  - SnakeSegment
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Snake
   - Water
   - UI
   - 
