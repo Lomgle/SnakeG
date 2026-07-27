@@ -11,6 +11,8 @@ public class SnakeMovement : MonoBehaviour
 
     public float moveRate = 10f;
     private float moveTimer = 0;
+    public Logic logic;
+    public int score = 0;
     public void Move()
     {
         for (int i = segmentList.Count - 1; i > 0; i--)
@@ -19,6 +21,7 @@ public class SnakeMovement : MonoBehaviour
     }
     void Start()
     {
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<Logic>();
         segmentList = new List<Transform>();
         segmentList.Add(transform);
     }
@@ -53,6 +56,7 @@ public class SnakeMovement : MonoBehaviour
         if (collision.tag == "Food")
         {
             Grow();
+            logic.AddScore();
         }
     }
 }
