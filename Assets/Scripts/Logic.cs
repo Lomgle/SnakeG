@@ -5,13 +5,14 @@ public class Logic : MonoBehaviour
 {
     public TextMeshPro scoreDisplay;
     public TextMeshProUGUI finalScoreDisplay;
+    public TextMeshProUGUI bestScoreDisplay;
     public int score;
     public GameObject gameOverCanvas;
     void Start()
     {
-        
+         if (!PlayerPrefs.HasKey("bestScore")) 
+            PlayerPrefs.SetInt("bestScore", 0);
     }
-    [ContextMenu("inc score")]
     public void AddScore()
     {
         score++;
@@ -22,6 +23,8 @@ public class Logic : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         finalScoreDisplay.text = score.ToString();
+        if (score > PlayerPrefs.GetInt("bestScore")) PlayerPrefs.SetInt("bestScore", score);
+        bestScoreDisplay.text = PlayerPrefs.GetInt("bestScore").ToString();
         gameOverCanvas.SetActive(true);
     }
     void Update()

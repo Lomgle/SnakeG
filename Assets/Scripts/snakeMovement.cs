@@ -13,6 +13,7 @@ public class SnakeMovement : MonoBehaviour
     private float moveTimer = 0;
     public Logic logic;
     public int score = 0;
+    public bool flagged = false;
     public void Move()
     {
         for (int i = segmentList.Count - 1; i > 0; i--)
@@ -60,8 +61,16 @@ public class SnakeMovement : MonoBehaviour
         }
         if (collision.tag == "Wall")
         {
-            Debug.Log("died");
             logic.GameOver();
+        }
+        if (collision.tag == "SnakeSegment")
+        {
+            if (flagged)
+            {
+                flagged = false;
+                logic.GameOver();
+            }
+            else flagged = true;
         }
     }
 }
