@@ -50,5 +50,8 @@ TagManager:
   - name: Border
     uniqueID: 948645005
     locked: 0
+  - name: GameOver
+    uniqueID: 3656727353
+    locked: 0
   m_RenderingLayers:
   - Default

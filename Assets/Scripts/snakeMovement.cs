@@ -58,5 +58,10 @@ public class SnakeMovement : MonoBehaviour
             Grow();
             logic.AddScore();
         }
+        if (collision.tag == "Wall")
+        {
+            Debug.Log("died");
+            logic.GameOver();
+        }
     }
 }
