@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Logic : MonoBehaviour
 {
@@ -8,9 +9,12 @@ public class Logic : MonoBehaviour
     public TextMeshProUGUI bestScoreDisplay;
     public int score;
     public GameObject gameOverCanvas;
+    public GameObject pauseCanvas;
+    public SnakeMovement snake;
     void Start()
     {
-         if (!PlayerPrefs.HasKey("bestScore")) 
+        snake = GameObject.FindGameObjectWithTag("Player").GetComponent<SnakeMovement>();
+        if (!PlayerPrefs.HasKey("bestScore")) 
             PlayerPrefs.SetInt("bestScore", 0);
     }
     public void AddScore()
@@ -26,6 +30,32 @@ public class Logic : MonoBehaviour
         if (score > PlayerPrefs.GetInt("bestScore")) PlayerPrefs.SetInt("bestScore", score);
         bestScoreDisplay.text = PlayerPrefs.GetInt("bestScore").ToString();
         gameOverCanvas.SetActive(true);
+    }
+
+    public void LoadGame()
+    {
+        SceneManager.LoadScene("Gameplay");
+        Time.timeScale = 1.0f;
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene("Menu");
+        snake.paused = false;
+        Time.timeScale = 1.0f;
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0.0f;
+        pauseCanvas.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        pauseCanvas.SetActive(false);
+        Time.timeScale = 1.0f;
+        snake.paused = false;
     }
     void Update()
     {

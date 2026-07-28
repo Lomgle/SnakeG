@@ -54,5 +54,8 @@ TagManager:
   - name: GameOver
     uniqueID: 3656727353
     locked: 0
+  - name: Pause
+    uniqueID: 1092715253
+    locked: 0
   m_RenderingLayers:
   - Default

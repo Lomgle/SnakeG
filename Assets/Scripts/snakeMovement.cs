@@ -14,6 +14,7 @@ public class SnakeMovement : MonoBehaviour
     public Logic logic;
     public int score = 0;
     public bool flagged = false;
+    public bool paused = false;
     public void Move()
     {
         for (int i = segmentList.Count - 1; i > 0; i--)
@@ -41,6 +42,19 @@ public class SnakeMovement : MonoBehaviour
         {
             moveTimer = 0.0f;
             Move();
+        }
+
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (!paused)
+            {
+                logic.PauseGame();
+                paused = true;
+            } else
+            {
+                logic.ResumeGame();
+                paused = false;
+            }
         }
     }
 
