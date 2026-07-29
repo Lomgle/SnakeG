@@ -10,4 +10,5 @@ public class MenuLogic : MonoBehaviour
     {
         Application.Quit();
     }
+
 }
