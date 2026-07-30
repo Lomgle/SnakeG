@@ -4,6 +4,7 @@ public class FoodPlacement : MonoBehaviour
 {
     public BoxCollider2D foodGrid;
     public LayerMask snakeLayer;
+    public AudioSource eatFX;
     private void RandomizePosition()
     {
         Bounds bounds = foodGrid.bounds;
@@ -33,6 +34,7 @@ public class FoodPlacement : MonoBehaviour
         if (collision.tag == "Player")
         {
             RandomizePosition();
+            eatFX.Play();
         }
     }
 }

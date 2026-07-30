@@ -11,6 +11,7 @@ public class Logic : MonoBehaviour
     public GameObject gameOverCanvas;
     public GameObject pauseCanvas;
     public SnakeMovement snake;
+    public AudioSource overFX;
     void Start()
     {
         snake = GameObject.FindGameObjectWithTag("Player").GetComponent<SnakeMovement>();
@@ -25,6 +26,7 @@ public class Logic : MonoBehaviour
 
     public void GameOver()
     {
+        overFX.Play();
         Time.timeScale = 0.0f;
         finalScoreDisplay.text = score.ToString();
         if (score > PlayerPrefs.GetInt("bestScore")) PlayerPrefs.SetInt("bestScore", score);
