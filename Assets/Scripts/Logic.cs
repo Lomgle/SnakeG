@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Logic : MonoBehaviour
 {
     public TextMeshPro scoreDisplay;
+    public TextMeshPro hint_text;
     public TextMeshProUGUI finalScoreDisplay;
     public TextMeshProUGUI bestScoreDisplay;
     public int score;

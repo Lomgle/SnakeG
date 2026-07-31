@@ -48,6 +48,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Food
+    uniqueID: 517385479
+    locked: 0
   - name: Border
     uniqueID: 948645005
     locked: 0
