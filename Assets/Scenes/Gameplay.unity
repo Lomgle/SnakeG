@@ -853,7 +853,7 @@ Material:
     - _BorderZoom: 1.18
     - _BottomStaticOpt: 0
     - _BumpScale: 1
-    - _CrtGlowAmount: 0.046
+    - _CrtGlowAmount: 0
     - _CrtReflectionCurve: 10
     - _CrtReflectionFalloff: 0.24
     - _CrtReflectionRadius: -0.087
@@ -879,18 +879,18 @@ Material:
     - _ScanlinesOpt: 0.4
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Spread: 0.1
-    - _Spread8: 0.1
+    - _Spread: 0.15
+    - _Spread8: 0.15
     - _SrcBlend: 1
     - _UVSec: 0
     - _VertJerkOpt: 1
     - _VertMovementOpt: 1
-    - _VigSize: 0.481
+    - _VigSize: 0.5
     - _ZWrite: 1
     m_Colors:
-    - _BorderTint: {r: 0, g: 0, b: 0, a: 0.3137255}
+    - _BorderTint: {r: 0.08679241, g: 0.08679241, b: 0.08679241, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorScans: {r: 0.32, g: 0.056, b: 0, a: 0}
+    - _ColorScans: {r: 0.343, g: 0, b: 10, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
@@ -1089,8 +1089,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Final score:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fc9c98abd82f83446a9b87c0ac9cf571, type: 2}
-  m_sharedMaterial: {fileID: -1994017919296371680, guid: fc9c98abd82f83446a9b87c0ac9cf571, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0a576df577262e7479cb726ed597cb40, type: 2}
+  m_sharedMaterial: {fileID: 317857751275920893, guid: 0a576df577262e7479cb726ed597cb40, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1496,9 +1496,9 @@ MonoBehaviour:
       green: 0
       blue: 0
       greyScale: 0
-    dithering4: 0.1
-    dithering8: 0.1
-    vignette: 0.481
+    dithering4: 0.15
+    dithering8: 0.15
+    vignette: 0.5
     innerCurve: 20
     monitorCurve: 0.028
     monitorInnerSize:
@@ -1510,13 +1510,13 @@ MonoBehaviour:
     zoom: 1.18
     monitorRoundness: 0.2
     monitorTexture: {fileID: 0}
-    monitorColor: {r: 0, g: 0, b: 0, a: 0.3137255}
+    monitorColor: {r: 0.08679241, g: 0.08679241, b: 0.08679241, a: 0}
     innerMonitorDarkness: 0
-    innerMonitorShine: 0.046
+    innerMonitorShine: 0
     colorScans:
-      greenChannelMultiplier: 0.32
-      redBlueChannelMultiplier: 0.056
-      sizeMultiplier: 0
+      greenChannelMultiplier: 0.343
+      redBlueChannelMultiplier: 0
+      sizeMultiplier: 10
     innerMonitorShineRadius: -0.087
     innerMonitorShineCurve: 10
 --- !u!1 &497355592
@@ -1549,7 +1549,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 0384145271c6b3e4e8ad0e41d90bb1b4, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.225
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1707,8 +1707,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME OVER!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fc9c98abd82f83446a9b87c0ac9cf571, type: 2}
-  m_sharedMaterial: {fileID: -1994017919296371680, guid: fc9c98abd82f83446a9b87c0ac9cf571, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0a576df577262e7479cb726ed597cb40, type: 2}
+  m_sharedMaterial: {fileID: 317857751275920893, guid: 0a576df577262e7479cb726ed597cb40, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1732,8 +1732,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.05
-  m_fontSizeBase: 32.05
+  m_fontSize: 31
+  m_fontSizeBase: 31
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1923,7 +1923,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: d44321f9b24fd3a479e84973e06a9432, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2142,7 +2142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19274472, g: 0.6226415, b: 0.03641862, a: 1}
+  m_Color: {r: 1, g: 0.38135785, b: 0.06666666, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2649,6 +2649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   direction: {x: 0, y: 0}
+  next_direction: {x: 0, y: 0}
   segmentList: []
   segmentPrefab: {fileID: 3786314444622849158, guid: a824af82554ef4047815853e033380b9, type: 3}
   moveRate: 0.2
@@ -2656,7 +2657,6 @@ MonoBehaviour:
   score: 0
   flagged: 0
   paused: 0
-  hasMoved: 1
 --- !u!212 &869822254
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3237,6 +3237,7 @@ MonoBehaviour:
   pauseCanvas: {fileID: 1941297339}
   snake: {fileID: 0}
   overFX: {fileID: 497355593}
+  gameMusic: {fileID: 1786671701}
 --- !u!4 &1440323322
 Transform:
   m_ObjectHideFlags: 0
@@ -3311,8 +3312,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Your best:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fc9c98abd82f83446a9b87c0ac9cf571, type: 2}
-  m_sharedMaterial: {fileID: -1994017919296371680, guid: fc9c98abd82f83446a9b87c0ac9cf571, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0a576df577262e7479cb726ed597cb40, type: 2}
+  m_sharedMaterial: {fileID: 317857751275920893, guid: 0a576df577262e7479cb726ed597cb40, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3835,7 +3836,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: move using [w], [a] ,[s] ,[d].
+  m_text: 'move using [w], [a] ,[s] ,[d].
+
+    [Esc] to pause.
+
+    goodluck!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fc9c98abd82f83446a9b87c0ac9cf571, type: 2}
   m_sharedMaterial: {fileID: -1994017919296371680, guid: fc9c98abd82f83446a9b87c0ac9cf571, type: 2}
@@ -3900,7 +3905,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 1.0962029, y: 0, z: 1.1353531, w: 3.758408}
+  m_margin: {x: 1.0962029, y: 0, z: 1.1353531, w: 3.0506754}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -3973,7 +3978,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -3.86}
+  m_AnchoredPosition: {x: 0, y: -3.67}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1646599071
@@ -4277,10 +4282,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 09a82bb0fc4c2ac42b4224cb3da1aefd, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.66
+  m_PlayOnAwake: 1
+  m_Volume: 0.4
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4693,7 +4698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.4491028, b: 0.3226415, a: 1}
+  m_Color: {r: 0.82641506, g: 0.1180593, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4885,7 +4890,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: cd521bac6cf93594d958819257d70e57, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0

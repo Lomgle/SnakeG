@@ -13,6 +13,7 @@ public class Logic : MonoBehaviour
     public GameObject pauseCanvas;
     public SnakeMovement snake;
     public AudioSource overFX;
+    public AudioSource gameMusic;
     void Start()
     {
         snake = GameObject.FindGameObjectWithTag("Player").GetComponent<SnakeMovement>();
@@ -27,6 +28,7 @@ public class Logic : MonoBehaviour
 
     public void GameOver()
     {
+        gameMusic.Stop();
         overFX.Play();
         Time.timeScale = 0.0f;
         finalScoreDisplay.text = score.ToString();
@@ -50,12 +52,14 @@ public class Logic : MonoBehaviour
 
     public void PauseGame()
     {
+        gameMusic.Pause();
         Time.timeScale = 0.0f;
         pauseCanvas.SetActive(true);
     }
 
     public void ResumeGame()
     {
+        gameMusic.UnPause();
         pauseCanvas.SetActive(false);
         Time.timeScale = 1.0f;
         snake.paused = false;
