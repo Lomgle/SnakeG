@@ -10,6 +10,11 @@ public class MenuLogic : MonoBehaviour
     public TextMeshPro number_counter_display;
 
     public AudioSource gameMusic;
+
+    public void HiddenRoom()
+    {
+        SceneManager.LoadScene("HiddenRoom");
+    }
     public void StartGame(){
         SceneManager.LoadScene("Gameplay");
     }
