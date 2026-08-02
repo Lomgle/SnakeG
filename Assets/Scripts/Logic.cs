@@ -10,15 +10,18 @@ public class Logic : MonoBehaviour
     public TextMeshProUGUI finalScoreDisplay;
     public TextMeshProUGUI bestScoreDisplay;
     public int score;
-
     public GameObject food;
     public GameObject gameOverCanvas;
     public GameObject pauseCanvas;
     public SnakeMovement snake;
     public AudioSource overFX;
     public AudioSource gameMusic;
+    public AudioSource bossMusic;
+    public Animator bossAnim;
+    public Boss boss;
     void Start()
     {
+        boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
         snake = GameObject.FindGameObjectWithTag("Player").GetComponent<SnakeMovement>();
         if (!PlayerPrefs.HasKey("bestScore")) 
             PlayerPrefs.SetInt("bestScore", 0);
@@ -27,8 +30,12 @@ public class Logic : MonoBehaviour
     {
         score++;
         scoreDisplay.text = score.ToString();
+        if (score == 1 && PlayerPrefs.HasKey("VisitCShrine"))
+        {
+            gameMusic.Stop();
+            boss.SpawnBoss();
+        }
     }
-
     public void GameOver()
     {
         gameMusic.Stop();
@@ -39,35 +46,31 @@ public class Logic : MonoBehaviour
         bestScoreDisplay.text = PlayerPrefs.GetInt("bestScore").ToString();
         gameOverCanvas.SetActive(true);
     }
-
     public void LoadGame()
     {
         SceneManager.LoadScene("Gameplay");
         Time.timeScale = 1.0f;
     }
-
     public void Menu()
     {
+        AudioListener.pause = false;
         SceneManager.LoadScene("Menu");
         snake.paused = false;
         Time.timeScale = 1.0f;
     }
-
     public void PauseGame()
     {
-        gameMusic.Pause();
+        AudioListener.pause = true;
         Time.timeScale = 0.0f;
         pauseCanvas.SetActive(true);
     }
-
     public void ResumeGame()
     {
-        gameMusic.UnPause();
+        AudioListener.pause = false;
         pauseCanvas.SetActive(false);
         Time.timeScale = 1.0f;
         snake.paused = false;
     }
-
     public void ClearSnake()
     {
         for (int i = 1; i < snake.segmentList.Count; i++)
@@ -76,21 +79,5 @@ public class Logic : MonoBehaviour
             }
         snake.segmentList.Clear();
         snake.segmentList.Add(transform);
-    }
-    public void SpawnBoss()
-    {
-        if (score == 7 && PlayerPrefs.HasKey("VisitCShrine"))
-        {
-            ClearSnake();
-            food.SetActive(false);
-            transform.position = new Vector3(-6.0f, 0.0f, 0.0f);
-            snake.direction = new Vector2(0.0f, 0.0f);
-            snake.canMove = false;
-        }
-    }
-
-    void Update()
-    {
-        SpawnBoss();
     }
 }

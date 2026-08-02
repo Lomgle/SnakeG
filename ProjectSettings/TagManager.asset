@@ -8,6 +8,7 @@ TagManager:
   - SnakeSegment
   - Logic
   - Wall
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -53,6 +54,9 @@ TagManager:
     locked: 0
   - name: Border
     uniqueID: 948645005
+    locked: 0
+  - name: Boss
+    uniqueID: 1782304655
     locked: 0
   - name: GameOver
     uniqueID: 3656727353
