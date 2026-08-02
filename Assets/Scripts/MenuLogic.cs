@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,13 +9,8 @@ public class MenuLogic : MonoBehaviour
     public bool flagged_showNumber = false;
     public GameObject hiddenButton;
     public TextMeshPro number_counter_display;
-
     public AudioSource gameMusic;
 
-    public void HiddenRoom()
-    {
-        SceneManager.LoadScene("HiddenRoom");
-    }
     public void StartGame(){
         SceneManager.LoadScene("Gameplay");
     }
