@@ -33,7 +33,7 @@ public class Logic : MonoBehaviour
         if (score == 1 && PlayerPrefs.HasKey("VisitCShrine"))
         {
             gameMusic.Stop();
-            boss.SpawnBoss();
+            boss.TriggerSpawnBoss();
         }
     }
     public void GameOver()
