@@ -11,7 +11,10 @@ public class dialogue : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public string[] lines;
     public float textSpeed;
+    public float transition_time = 1.5f;
     private int index;
+
+    public GameObject questions;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -49,7 +52,20 @@ public class dialogue : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
     }
-
+    public void TriggerSequence()
+    {
+        StopAllCoroutines();
+        StartCoroutine(PlaySequence());
+    }
+    IEnumerator PlaySequence()
+    {
+        anim.SetTrigger("Question");
+        bg_song.Stop();
+        yield return new WaitForSeconds(transition_time);
+        gameObject.SetActive(false);
+        TLST.Play();
+        questions.SetActive(true);
+    }
     public void NextLine()
     {
         if (index < lines.Length - 1)
@@ -58,10 +74,7 @@ public class dialogue : MonoBehaviour
             dialogueText.text = string.Empty;
             StartCoroutine(TypeLine()); 
         } else {
-            gameObject.SetActive(false);
-            bg_song.Stop();
-            TLST.Play();
-            anim.SetTrigger("Question");
+            TriggerSequence();
         }
     }
 }
