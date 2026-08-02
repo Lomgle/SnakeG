@@ -11,6 +11,15 @@ public class MenuLogic : MonoBehaviour
     public TextMeshPro number_counter_display;
     public AudioSource gameMusic;
 
+    void Start()
+    {
+        if (PlayerPrefs.HasKey("VisitCShrine"))
+        {
+            counter = 68;
+            ShowHidden();
+            flagged_showNumber = true;
+        }
+    }
     public void StartGame(){
         SceneManager.LoadScene("Gameplay");
     }

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class Logic : MonoBehaviour
@@ -9,6 +10,8 @@ public class Logic : MonoBehaviour
     public TextMeshProUGUI finalScoreDisplay;
     public TextMeshProUGUI bestScoreDisplay;
     public int score;
+
+    public GameObject food;
     public GameObject gameOverCanvas;
     public GameObject pauseCanvas;
     public SnakeMovement snake;
@@ -64,8 +67,30 @@ public class Logic : MonoBehaviour
         Time.timeScale = 1.0f;
         snake.paused = false;
     }
+
+    public void ClearSnake()
+    {
+        for (int i = 1; i < snake.segmentList.Count; i++)
+            {
+                Destroy(snake.segmentList[i].gameObject);
+            }
+        snake.segmentList.Clear();
+        snake.segmentList.Add(transform);
+    }
+    public void SpawnBoss()
+    {
+        if (score == 7 && PlayerPrefs.HasKey("VisitCShrine"))
+        {
+            ClearSnake();
+            food.SetActive(false);
+            transform.position = new Vector3(-6.0f, 0.0f, 0.0f);
+            snake.direction = new Vector2(0.0f, 0.0f);
+            snake.canMove = false;
+        }
+    }
+
     void Update()
     {
-        
+        SpawnBoss();
     }
 }

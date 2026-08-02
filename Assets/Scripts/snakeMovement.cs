@@ -19,6 +19,7 @@ public class SnakeMovement : MonoBehaviour
     public int score = 0;
     public bool flagged = false;
     public bool paused = false;
+    public bool canMove = true;
     public void Move()
     {
         direction = next_direction;
@@ -28,6 +29,7 @@ public class SnakeMovement : MonoBehaviour
     }
     void Start()
     {
+        InputSystem.EnableDevice(Keyboard.current);
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<Logic>();
         segmentList = new List<Transform>();
         segmentList.Add(transform);
@@ -55,13 +57,16 @@ public class SnakeMovement : MonoBehaviour
     }
     void Update()
     {
-        ControlDirection();
-        moveTimer += Time.deltaTime;
-        if (moveTimer >= moveRate)
-        {
-            moveTimer = 0.0f;
-            Move();
+        if (canMove){
+            ControlDirection();
+            moveTimer += Time.deltaTime;
+            if (moveTimer >= moveRate)
+            {
+                moveTimer = 0.0f;
+                Move();
+            }            
         }
+
 
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {

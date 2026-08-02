@@ -17,6 +17,9 @@ public class ReceiveAnswer : MonoBehaviour
     public int index = 0;
 
     public AudioSource TLST;
+    public Animator anim;
+    public float animTime = 2f;
+    public GameObject finalDialogue;
 
     void Start()
     {
@@ -25,8 +28,7 @@ public class ReceiveAnswer : MonoBehaviour
 
     public void CoroutineCheckAnswer()
     {
-        FinalSequence();
-        //StartCoroutine(CheckAnswer());
+        StartCoroutine(CheckAnswer());
     }
     IEnumerator CheckAnswer()
     {
@@ -47,15 +49,17 @@ public class ReceiveAnswer : MonoBehaviour
     {
         correct.SetActive(false);
         input.text = string.Empty;
-        if (index >= listQnA.Length) FinalSequence();
+        if (index >= listQnA.Length) StartCoroutine(FinalSequence());
         else questionText.text = listQnA[index].question;
 
     }
 
-    public void FinalSequence()
+    IEnumerator FinalSequence()
     {
         gameObject.SetActive(false);
         TLST.Stop();
-        Debug.Log("finished");
+        anim.SetTrigger("Final");
+        finalDialogue.SetActive(true);
+        yield return new WaitForSeconds(animTime);
     }
 }

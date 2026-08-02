@@ -1519,6 +1519,63 @@ MonoBehaviour:
       sizeMultiplier: 10
     innerMonitorShineRadius: -0.087
     innerMonitorShineCurve: 10
+--- !u!1001 &482875707
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 189611028356531091, guid: a7e5914a1864aba4b8dd0f80af0c5d6b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.90487
+      objectReference: {fileID: 0}
+    - target: {fileID: 189611028356531091, guid: a7e5914a1864aba4b8dd0f80af0c5d6b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.12077
+      objectReference: {fileID: 0}
+    - target: {fileID: 189611028356531091, guid: a7e5914a1864aba4b8dd0f80af0c5d6b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189611028356531091, guid: a7e5914a1864aba4b8dd0f80af0c5d6b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 189611028356531091, guid: a7e5914a1864aba4b8dd0f80af0c5d6b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189611028356531091, guid: a7e5914a1864aba4b8dd0f80af0c5d6b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189611028356531091, guid: a7e5914a1864aba4b8dd0f80af0c5d6b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189611028356531091, guid: a7e5914a1864aba4b8dd0f80af0c5d6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189611028356531091, guid: a7e5914a1864aba4b8dd0f80af0c5d6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189611028356531091, guid: a7e5914a1864aba4b8dd0f80af0c5d6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338659431075421832, guid: a7e5914a1864aba4b8dd0f80af0c5d6b, type: 3}
+      propertyPath: m_Name
+      value: Transition
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a7e5914a1864aba4b8dd0f80af0c5d6b, type: 3}
 --- !u!1 &497355592
 GameObject:
   m_ObjectHideFlags: 0
@@ -3233,6 +3290,7 @@ MonoBehaviour:
   finalScoreDisplay: {fileID: 1739569913}
   bestScoreDisplay: {fileID: 872465087}
   score: 0
+  food: {fileID: 107693928}
   gameOverCanvas: {fileID: 633795275}
   pauseCanvas: {fileID: 1941297339}
   snake: {fileID: 0}
@@ -4993,6 +5051,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 482875707}
   - {fileID: 466228823}
   - {fileID: 869822250}
   - {fileID: 107693930}

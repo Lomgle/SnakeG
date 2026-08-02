@@ -39,7 +39,7 @@ public class dialogue : MonoBehaviour
     }
     public void StartDialogue()
     {
-        index = 24;
+        index = 0;
         StartCoroutine(TypeLine());
 
     }
@@ -51,11 +51,6 @@ public class dialogue : MonoBehaviour
             dialogueText.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
-    }
-    public void TriggerSequence()
-    {
-        StopAllCoroutines();
-        StartCoroutine(PlaySequence());
     }
     IEnumerator PlaySequence()
     {
@@ -74,7 +69,8 @@ public class dialogue : MonoBehaviour
             dialogueText.text = string.Empty;
             StartCoroutine(TypeLine()); 
         } else {
-            TriggerSequence();
+            StopAllCoroutines();
+            StartCoroutine(PlaySequence());
         }
     }
 }
