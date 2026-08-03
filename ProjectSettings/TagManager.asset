@@ -9,6 +9,7 @@ TagManager:
   - Logic
   - Wall
   - Boss
+  - Boss1
   layers:
   - Default
   - TransparentFX
@@ -57,6 +58,12 @@ TagManager:
     locked: 0
   - name: Boss
     uniqueID: 1782304655
+    locked: 0
+  - name: Boss1
+    uniqueID: 1662962703
+    locked: 0
+  - name: Boss2
+    uniqueID: 2139932265
     locked: 0
   - name: GameOver
     uniqueID: 3656727353

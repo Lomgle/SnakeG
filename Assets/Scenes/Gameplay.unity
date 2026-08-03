@@ -757,7 +757,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -638239943
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.45882353}
@@ -1436,7 +1436,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2644,7 +2644,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3121,7 +3121,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 1782304655
+  m_SortingLayerID: 2139932265
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &982778682
@@ -3833,7 +3833,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -5132,7 +5132,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066652754}
   m_LocalRotation: {x: -0.057524905, y: 0.40827692, z: -0.12710766, w: 0.9021333}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1103}
   m_LocalScale: {x: 4.58, y: 6.5084214, z: 2.1913877}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5140,7 +5140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 48.7, z: -16.04}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1354, y: 0}
+  m_AnchoredPosition: {x: 1241, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &2066652756
@@ -5227,6 +5227,7 @@ MonoBehaviour:
   bombGrid1: {fileID: 1026732458}
   bomb_indicator: {fileID: 1521772379906819998, guid: 91ce8775bda2fff42a425a8885a2e7a6, type: 3}
   bomb: {fileID: 1521772379906819998, guid: c7ea20a23f0c4e048b0c9673547f5c72, type: 3}
+  projectile: {fileID: 5442882565627926439, guid: 8463bc9c4dbb529409831258f7ab4689, type: 3}
 --- !u!1 &2097065243
 GameObject:
   m_ObjectHideFlags: 0
@@ -5290,7 +5291,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

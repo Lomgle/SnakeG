@@ -15,6 +15,7 @@ public class Boss : MonoBehaviour
 
     public GameObject bomb_indicator;
     public GameObject bomb;
+    public GameObject projectile;
     void Start()
     {
         bombGrid1Bounds = bombGrid1.bounds;
@@ -37,31 +38,34 @@ public class Boss : MonoBehaviour
 
         logic.ClearSnake();
         food.SetActive(false);
+
         snake.direction = new Vector2(0.0f, 0.0f);
+        snake.next_direction = new Vector2(0.0f, 0.0f);
+
         snake.canMove = false;
         snake.transform.position = new Vector3(-6.0f, 0.0f);
+
         playMusic();
         bossAnim.SetTrigger("Intro");
         yield return new WaitForSeconds(introTime);
 
-        snake.direction = Vector2.right;
         snake.canMove = true;
         boss_wall1.SetActive(true);
-        StartCoroutine(BombScatter());
+        StartCoroutine(IntroAttack());
     }
 
-    IEnumerator BombScatter()
+    IEnumerator IntroAttack() //bomb scatter & random shoot
     {
         float explodeTime = 2f;
-
         StartCoroutine(SpawnBomb(bombGrid1Bounds, bossLayer, explodeTime));
 
         yield return new WaitForSeconds(4f);
 
         for (int i = 1; i <= 3; i++){
-            StartCoroutine(SpawnBomb(bombGrid1Bounds, bossLayer, explodeTime));
+            StartCoroutine(SpawnBomb(bombGrid1Bounds, bossLayer, explodeTime/2));
         }
 
+        StartCoroutine(ShootWithInterval(2.5f, 4));
         yield return new WaitForSeconds(3f);
         for (int i = 1; i <= 5; i++)
         {
@@ -79,8 +83,24 @@ public class Boss : MonoBehaviour
         {
             StartCoroutine(SpawnBomb(bombGrid1Bounds, bossLayer, explodeTime));
         }
+
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(AroundTheWorld());
     }
     
+    IEnumerator AroundTheWorld()
+    {
+        boss_wall1.SetActive(false);
+        yield return new WaitForSeconds(1f);
+    }
+    IEnumerator ShootWithInterval(float interval, int projectile_count)
+    {
+        for (int i = 1; i <= projectile_count; i++)
+        {
+            Instantiate(projectile, transform.position, transform.rotation);
+            yield return new WaitForSeconds(interval);
+        }
+    }
     public Vector2 RandomizePos(Bounds bounds, LayerMask layer)
     {
         float x, y;
@@ -107,5 +127,6 @@ public class Boss : MonoBehaviour
         GameObject bomb1 = Instantiate(bomb);
         bomb1.transform.position = bomb_pos;
 
+        Destroy(bomb_indicator1);
     }
 }
