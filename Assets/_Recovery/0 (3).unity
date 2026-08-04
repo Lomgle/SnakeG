@@ -5462,7 +5462,6 @@ MonoBehaviour:
     m_Bits: 64
   bombGrid1: {fileID: 1026732458}
   bombGrid2: {fileID: 318747465}
-  bombList: []
   hint1: {fileID: 2041488156}
   bomb_indicator: {fileID: 1521772379906819998, guid: 91ce8775bda2fff42a425a8885a2e7a6, type: 3}
   bomb: {fileID: 1521772379906819998, guid: c7ea20a23f0c4e048b0c9673547f5c72, type: 3}

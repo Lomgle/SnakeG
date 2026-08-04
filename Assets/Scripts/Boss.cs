@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class Boss : MonoBehaviour
     public LayerMask bossLayer;
     public BoxCollider2D bombGrid1;
     public BoxCollider2D bombGrid2;
+
+    public List<GameObject> bombList;
     private Bounds bombGrid1Bounds;
     private Bounds bombGrid2Bounds;
 
@@ -63,6 +66,14 @@ public class Boss : MonoBehaviour
         StartCoroutine(IntroAttack());
     }
 
+    IEnumerator ClearBomb()
+    {
+        foreach (GameObject b in bombList)
+        {
+            Destroy(b);
+        }
+        yield return new WaitForSeconds(0.0f);
+    }
     IEnumerator ShowHint(TextMeshProUGUI text)
     {
         for (int i = 1; i <= 3; i++)
@@ -130,6 +141,7 @@ public class Boss : MonoBehaviour
 
     IEnumerator CloseTheWorld()
     {
+        StartCoroutine(ClearBomb());
         for (int k = 1; k <= 3; k++)
         {
             for (int i = 1; i <= 5; i++)
@@ -141,7 +153,8 @@ public class Boss : MonoBehaviour
         }
         yield return new WaitForSeconds(2f);
         bossAnim.SetTrigger("RAN");
-
+        yield return new WaitForSeconds(4.7f);
+        bossWall2Anim.SetTrigger("Disappear");
     }
     IEnumerator ShootWithInterval(float interval, int projectile_count)
     {
@@ -175,6 +188,7 @@ public class Boss : MonoBehaviour
 
         GameObject bomb1 = Instantiate(bomb);
         bomb1.transform.position = bomb_pos;
+        bombList.Add(bomb1);
 
         Destroy(bomb_indicator1);
     }
