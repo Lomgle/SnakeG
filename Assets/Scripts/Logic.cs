@@ -17,11 +17,10 @@ public class Logic : MonoBehaviour
     public AudioSource overFX;
     public AudioSource gameMusic;
     public AudioSource bossMusic;
-    public Animator bossAnim;
     public Boss boss;
     void Start()
     {
-        boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
+        boss = GameObject.FindGameObjectWithTag("Boss1").GetComponent<Boss>();
         snake = GameObject.FindGameObjectWithTag("Player").GetComponent<SnakeMovement>();
         if (!PlayerPrefs.HasKey("bestScore")) 
             PlayerPrefs.SetInt("bestScore", 0);

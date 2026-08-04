@@ -1,9 +1,11 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
     public Animator bossAnim;
+    public Animator bossWall2Anim;
     public AudioSource bossMusic;
     public SnakeMovement snake;
     public Logic logic;
@@ -11,7 +13,11 @@ public class Boss : MonoBehaviour
     public GameObject boss_wall1;
     public LayerMask bossLayer;
     public BoxCollider2D bombGrid1;
+    public BoxCollider2D bombGrid2;
     private Bounds bombGrid1Bounds;
+    private Bounds bombGrid2Bounds;
+
+    public TextMeshProUGUI hint1;
 
     public GameObject bomb_indicator;
     public GameObject bomb;
@@ -19,6 +25,7 @@ public class Boss : MonoBehaviour
     void Start()
     {
         bombGrid1Bounds = bombGrid1.bounds;
+        bombGrid2Bounds = bombGrid2.bounds;
         snake = GameObject.FindGameObjectWithTag("Player").GetComponent<SnakeMovement>();
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<Logic>();
     }
@@ -50,10 +57,22 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(introTime);
 
         snake.canMove = true;
+
+        //yield return StartCoroutine(AroundTheWorld());
         boss_wall1.SetActive(true);
         StartCoroutine(IntroAttack());
     }
 
+    IEnumerator ShowHint(TextMeshProUGUI text)
+    {
+        for (int i = 1; i <= 3; i++)
+        {
+            yield return new WaitForSeconds(0.5f);
+            text.alpha = 255f;
+            yield return new WaitForSeconds(0.5f);
+            text.alpha = 0.0f;
+        }
+    }
     IEnumerator IntroAttack() //bomb scatter & random shoot
     {
         float explodeTime = 2f;
@@ -92,6 +111,37 @@ public class Boss : MonoBehaviour
     {
         boss_wall1.SetActive(false);
         yield return new WaitForSeconds(1f);
+        bossAnim.SetTrigger("ATW");
+
+        for (int i = 0; i <= 7; i++)
+        {
+            StartCoroutine(SpawnBomb(bombGrid1Bounds, bossLayer, 2f));
+            yield return new WaitForSeconds(1f);
+        }
+        StartCoroutine(ShowHint(hint1));
+        yield return new WaitForSeconds(3f);
+        bossWall2Anim.SetTrigger("Appear");
+        yield return new WaitForSeconds(3f);
+        bossAnim.SetTrigger("CTW");
+        yield return new WaitForSeconds(3f);
+
+        yield return StartCoroutine(CloseTheWorld());
+    }
+
+    IEnumerator CloseTheWorld()
+    {
+        for (int k = 1; k <= 3; k++)
+        {
+            for (int i = 1; i <= 5; i++)
+            {
+                Instantiate(projectile, transform.position, transform.rotation);
+                yield return new WaitForSeconds(0.3f);
+            }
+            yield return new WaitForSeconds(.3f);
+        }
+        yield return new WaitForSeconds(2f);
+        bossAnim.SetTrigger("RAN");
+
     }
     IEnumerator ShootWithInterval(float interval, int projectile_count)
     {
@@ -114,7 +164,6 @@ public class Boss : MonoBehaviour
         } while (Physics2D.OverlapPoint(temp, layer));
         return temp;
     }
-
     IEnumerator SpawnBomb(Bounds bounds, LayerMask layer, float explodeTime)
     {
         Vector2 bomb_pos = RandomizePos(bounds, layer);
