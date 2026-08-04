@@ -6,29 +6,33 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     public Animator bossAnim;
+    public Animator laserGroupAnim1;
+    public Animator laserGroupAnim2;
+    public Animator laserGroupAnim3;
     public Animator bossWall2Anim;
     public AudioSource bossMusic;
     public SnakeMovement snake;
     public Logic logic;
     public GameObject food;
     public GameObject boss_wall1;
-    public LayerMask bossLayer;
+    public GameObject laserGroup1;
+    public GameObject laserGroup2;
+    public GameObject laserGroup3;
+    public LayerMask bombLayer;
     public BoxCollider2D bombGrid1;
-    public BoxCollider2D bombGrid2;
 
     public List<GameObject> bombList;
     private Bounds bombGrid1Bounds;
-    private Bounds bombGrid2Bounds;
 
     public TextMeshProUGUI hint1;
-
+    public TextMeshProUGUI hint2;
+    public TextMeshProUGUI hint3;
     public GameObject bomb_indicator;
     public GameObject bomb;
     public GameObject projectile;
     void Start()
     {
         bombGrid1Bounds = bombGrid1.bounds;
-        bombGrid2Bounds = bombGrid2.bounds;
         snake = GameObject.FindGameObjectWithTag("Player").GetComponent<SnakeMovement>();
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<Logic>();
     }
@@ -74,9 +78,9 @@ public class Boss : MonoBehaviour
         }
         yield return new WaitForSeconds(0.0f);
     }
-    IEnumerator ShowHint(TextMeshProUGUI text)
+    IEnumerator ShowHint(TextMeshProUGUI text, int blink)
     {
-        for (int i = 1; i <= 3; i++)
+        for (int i = 1; i <= blink; i++)
         {
             yield return new WaitForSeconds(0.5f);
             text.alpha = 255f;
@@ -87,37 +91,36 @@ public class Boss : MonoBehaviour
     IEnumerator IntroAttack() //bomb scatter & random shoot
     {
         float explodeTime = 2f;
-        StartCoroutine(SpawnBomb(bombGrid1Bounds, bossLayer, explodeTime));
+        StartCoroutine(SpawnBomb(bombGrid1Bounds, bombLayer, explodeTime));
 
         yield return new WaitForSeconds(4f);
 
         for (int i = 1; i <= 3; i++){
-            StartCoroutine(SpawnBomb(bombGrid1Bounds, bossLayer, explodeTime/2));
+            StartCoroutine(SpawnBomb(bombGrid1Bounds, bombLayer, explodeTime/2));
         }
 
         StartCoroutine(ShootWithInterval(2.5f, 4));
         yield return new WaitForSeconds(3f);
         for (int i = 1; i <= 5; i++)
         {
-            StartCoroutine(SpawnBomb(bombGrid1Bounds, bossLayer, explodeTime));
+            StartCoroutine(SpawnBomb(bombGrid1Bounds, bombLayer, explodeTime));
         }
 
         yield return new WaitForSeconds(3f);
         for (int i = 1; i <= 5; i++)
         {
-            StartCoroutine(SpawnBomb(bombGrid1Bounds, bossLayer, explodeTime/2));
+            StartCoroutine(SpawnBomb(bombGrid1Bounds, bombLayer, explodeTime/2));
         }
 
         yield return new WaitForSeconds(2f);
         for (int i = 1; i <= 5; i++)
         {
-            StartCoroutine(SpawnBomb(bombGrid1Bounds, bossLayer, explodeTime));
+            StartCoroutine(SpawnBomb(bombGrid1Bounds, bombLayer, explodeTime));
         }
 
         yield return new WaitForSeconds(3f);
         StartCoroutine(AroundTheWorld());
     }
-    
     IEnumerator AroundTheWorld()
     {
         boss_wall1.SetActive(false);
@@ -126,10 +129,10 @@ public class Boss : MonoBehaviour
 
         for (int i = 0; i <= 7; i++)
         {
-            StartCoroutine(SpawnBomb(bombGrid1Bounds, bossLayer, 2f));
+            StartCoroutine(SpawnBomb(bombGrid1Bounds, bombLayer, 2f));
             yield return new WaitForSeconds(1f);
         }
-        StartCoroutine(ShowHint(hint1));
+        StartCoroutine(ShowHint(hint1, 3));
         yield return new WaitForSeconds(3f);
         bossWall2Anim.SetTrigger("Appear");
         yield return new WaitForSeconds(3f);
@@ -154,7 +157,37 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(2f);
         bossAnim.SetTrigger("RAN");
         yield return new WaitForSeconds(4.7f);
+
+        StartCoroutine(ShowHint(hint2, 2));
+
         bossWall2Anim.SetTrigger("Disappear");
+        yield return new WaitForSeconds(1.5f);
+        yield return StartCoroutine(Enraged());
+    }
+
+    IEnumerator Enraged()
+    {
+        bossAnim.SetTrigger("FINALPHASE");
+        yield return new WaitForSeconds(2.5f);
+
+        laserGroup1.SetActive(true);
+        laserGroupAnim1.SetTrigger("Shoot");
+        yield return new WaitForSeconds(1.5f);
+        laserGroup1.SetActive(false);
+
+        yield return new WaitForSeconds(1.5f);
+
+        laserGroup2.SetActive(true);
+        laserGroupAnim2.SetTrigger("Shoot");
+        yield return new WaitForSeconds(1.5f);
+        laserGroup2.SetActive(false);
+
+        yield return new WaitForSeconds(2f);
+
+        laserGroup3.SetActive(true);
+        laserGroupAnim3.SetTrigger("Shoot");
+        yield return new WaitForSeconds(1.5f);
+        laserGroup3.SetActive(false);
     }
     IEnumerator ShootWithInterval(float interval, int projectile_count)
     {
