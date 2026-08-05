@@ -6,9 +6,13 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     public Animator bossAnim;
+    public Animator creditAnim;
+    public Animator cameraAnim;
+    public Animator goodCAnim;
     public Animator laserGroupAnim1;
     public Animator laserGroupAnim2;
     public Animator laserGroupAnim3;
+    public Animator laserFlowerAnim;
     public Animator bossWall2Anim;
     public AudioSource bossMusic;
     public SnakeMovement snake;
@@ -27,9 +31,16 @@ public class Boss : MonoBehaviour
     public TextMeshProUGUI hint1;
     public TextMeshProUGUI hint2;
     public TextMeshProUGUI hint3;
+
+    public TextMeshPro final_text;
+
     public GameObject bomb_indicator;
     public GameObject bomb;
     public GameObject projectile;
+    public GameObject laserFlower;
+
+    public ParticleSystem normalParticle;
+    public ParticleSystem finalParticle;
     void Start()
     {
         bombGrid1Bounds = bombGrid1.bounds;
@@ -44,7 +55,8 @@ public class Boss : MonoBehaviour
 
     public void TriggerSpawnBoss()
     {
-        StartCoroutine(SpawnBoss());
+        creditAnim.Play("CREDIT");
+        //StartCoroutine(SpawnBoss());
     }
     IEnumerator SpawnBoss()
     {
@@ -59,15 +71,19 @@ public class Boss : MonoBehaviour
         snake.canMove = false;
         snake.transform.position = new Vector3(-6.0f, 0.0f);
 
+        logic.score = 66;
+        logic.AddScore();
+
         playMusic();
         bossAnim.SetTrigger("Intro");
         yield return new WaitForSeconds(introTime);
 
+        cameraAnim.Play("Wiggle");
         snake.canMove = true;
 
-        //yield return StartCoroutine(AroundTheWorld());
         boss_wall1.SetActive(true);
-        StartCoroutine(IntroAttack());
+        normalParticle.Play();
+        yield return StartCoroutine(IntroAttack());
     }
 
     IEnumerator ClearBomb()
@@ -87,6 +103,20 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             text.alpha = 0.0f;
         }
+    }
+    IEnumerator ShowText(TextMeshPro TMP, float type_speed, float lasting)
+    {
+        string text = TMP.text;
+        TMP.text = string.Empty;
+        TMP.alpha = 255f;
+
+        foreach (char c in text.ToCharArray())
+        {
+            TMP.text += c;
+            yield return new WaitForSeconds(type_speed);
+        }
+        yield return new WaitForSeconds(lasting);
+        TMP.alpha = 0.0f;
     }
     IEnumerator IntroAttack() //bomb scatter & random shoot
     {
@@ -167,27 +197,67 @@ public class Boss : MonoBehaviour
 
     IEnumerator Enraged()
     {
+        normalParticle.Stop();
+        finalParticle.Play();
+        cameraAnim.Play("Default");
         bossAnim.SetTrigger("FINALPHASE");
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.0f);
 
+        StartCoroutine(ShowHint(hint3, 1));
+        yield return new WaitForSeconds(1.5f);
+
+        cameraAnim.Play("Shake");
         laserGroup1.SetActive(true);
         laserGroupAnim1.SetTrigger("Shoot");
         yield return new WaitForSeconds(1.5f);
         laserGroup1.SetActive(false);
 
+        cameraAnim.Play("Default");
         yield return new WaitForSeconds(1.5f);
 
+        cameraAnim.Play("Shake");
         laserGroup2.SetActive(true);
         laserGroupAnim2.SetTrigger("Shoot");
         yield return new WaitForSeconds(1.5f);
         laserGroup2.SetActive(false);
 
+        cameraAnim.Play("Default");
         yield return new WaitForSeconds(2f);
 
+        cameraAnim.Play("Shake");
         laserGroup3.SetActive(true);
         laserGroupAnim3.SetTrigger("Shoot");
         yield return new WaitForSeconds(1.5f);
         laserGroup3.SetActive(false);
+
+        cameraAnim.Play("Default");
+        yield return new WaitForSeconds(2f);
+        bossAnim.SetTrigger("FINALDANCE");
+        
+        yield return new WaitForSeconds(1.5f);
+        laserFlowerAnim.SetTrigger("Start");
+        yield return new WaitForSeconds(17f);
+
+        yield return FinalSequence();
+    }
+
+    IEnumerator FinalSequence()
+    {
+        bossAnim.SetTrigger("DIE");
+        finalParticle.Stop();
+        yield return new WaitForSeconds(4f);
+
+        snake.direction = new Vector2(0.0f, 0.0f);
+        snake.next_direction = new Vector2(0.0f, 0.0f);
+
+        snake.canMove = false;
+        snake.transform.position = new Vector3(6.0f, 0.0f);
+
+        yield return new WaitForSeconds(3f);
+        goodCAnim.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1.2f);
+        StartCoroutine(ShowText(final_text, 0.2f, 3f));
     }
     IEnumerator ShootWithInterval(float interval, int projectile_count)
     {

@@ -39,6 +39,7 @@ public class Logic : MonoBehaviour
     {
         gameMusic.Stop();
         overFX.Play();
+        AudioListener.pause = true;
         Time.timeScale = 0.0f;
         finalScoreDisplay.text = score.ToString();
         if (score > PlayerPrefs.GetInt("bestScore")) PlayerPrefs.SetInt("bestScore", score);
@@ -49,6 +50,7 @@ public class Logic : MonoBehaviour
     {
         SceneManager.LoadScene("Gameplay");
         Time.timeScale = 1.0f;
+        AudioListener.pause = false;
     }
     public void Menu()
     {
