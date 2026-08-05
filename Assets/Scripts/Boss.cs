@@ -55,8 +55,7 @@ public class Boss : MonoBehaviour
 
     public void TriggerSpawnBoss()
     {
-        creditAnim.Play("CREDIT");
-        //StartCoroutine(SpawnBoss());
+        StartCoroutine(SpawnBoss());
     }
     IEnumerator SpawnBoss()
     {
@@ -258,6 +257,12 @@ public class Boss : MonoBehaviour
 
         yield return new WaitForSeconds(1.2f);
         StartCoroutine(ShowText(final_text, 0.2f, 3f));
+
+        yield return new WaitForSeconds(4f);
+        snake.flagged = false;
+        snake.canMove = true;
+        food.SetActive(true);
+        creditAnim.SetTrigger("CREDIT");
     }
     IEnumerator ShootWithInterval(float interval, int projectile_count)
     {

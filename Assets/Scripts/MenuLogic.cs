@@ -28,6 +28,12 @@ public class MenuLogic : MonoBehaviour
         Application.Quit();
     }
 
+    public void DeleteData()
+    {
+        PlayerPrefs.DeleteAll();
+        Application.Quit();
+    }
+
     public void ShowNumber()
     {
         if (!flagged_showNumber) number_counter_display.alpha = 255.0f;

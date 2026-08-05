@@ -29,7 +29,7 @@ public class Logic : MonoBehaviour
     {
         score++;
         scoreDisplay.text = score.ToString();
-        if (score == 1 && PlayerPrefs.HasKey("VisitCShrine"))
+        if ((score == 7 && PlayerPrefs.HasKey("VisitCShrine")) || (score == 1 && PlayerPrefs.HasKey("DiedToBoss")))
         {
             gameMusic.Stop();
             boss.TriggerSpawnBoss();
@@ -79,6 +79,6 @@ public class Logic : MonoBehaviour
                 Destroy(snake.segmentList[i].gameObject);
             }
         snake.segmentList.Clear();
-        snake.segmentList.Add(transform);
+        snake.segmentList.Add(snake.transform);
     }
 }

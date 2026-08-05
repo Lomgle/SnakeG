@@ -110,5 +110,10 @@ public class SnakeMovement : MonoBehaviour
             }
             else flagged = true;
         }
+        if (collision.tag == "Boss" || collision.tag == "Boss1")
+        {
+            logic.GameOver();
+            PlayerPrefs.SetInt("DiedToBoss", 1);
+        }
     }
 }
